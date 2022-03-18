@@ -4,6 +4,7 @@ export default function Comment () {
             <div className="comment-heading">
                 <img className="user-avatar" src='/images/avatars/image-amyrobson.png' alt="user avatar"/>
                 <p className="username">amyrobson</p>
+                <p className="tag hidden">you</p>
                 <p className="date">1 month ago</p>
                 
             </div>
@@ -18,16 +19,16 @@ export default function Comment () {
                         <img  className="minus-icon"src="/images/icon-minus.svg" alt="minus icon"/>
                     </button>
                 </div>
-                <button className="reply-btn hidden">
+                <button className="reply-btn">
                     <img  className="reply-icon"src="/images/icon-reply.svg" alt="reply icon"/>
                     Reply
                 </button>
-                <div className="toggled-btns">
-                    <button className="delete-btn ">
+                <div className="toggled-btns hidden">
+                    <button className="delete-btn">
                         <img  className="delete-icon"src="/images/icon-delete.svg" alt="delete icon"/>
                         Delete
                     </button>
-                    <button className="edit-btn ">
+                    <button className="edit-btn">
                         <img  className="edit-icon"src="/images/icon-edit.svg" alt="edit icon"/>
                         Edit
                     </button>

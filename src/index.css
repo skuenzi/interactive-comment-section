@@ -66,12 +66,22 @@ button {
 
 .user-avatar,
 .username,
-.date {
-  margin-right: 1rem;
+.date,
+.tag {
+  margin-right: .9rem;
 }
 
 .user-avatar {
   width: 2rem;
+}
+
+.tag {
+  background-color: var(--moderateblue);
+  color: var(--white);
+  font-size: .75rem;
+  font-weight: bold;
+  padding: .15rem .5rem;
+  border-radius: 4px;
 }
 
 .comment-footer {
