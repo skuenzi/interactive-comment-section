@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1rem;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  background-color: var(--verylightgray);
+}
+
+:root {
+  --moderateblue: hsl(238, 40%, 52%);
+  --softred: hsl(358, 79%, 66%);
+  --lightgrayishblue: hsl(239, 57%, 85%);
+  --palered: hsl(357, 100%, 86%);
+  --darkblue: hsl(212, 24%, 26%);
+  --grayishblue: hsl(211, 10%, 45%);
+  --lightgray: hsl(223, 19%, 93%);
+  --verylightgray: hsl(240, 2%, 89%);
+  --white: hsl(0, 0%, 100%);
+}
+
+.hidden {
+  display: none;
+}
+
+/* TYPOGRAPHY */
+
+.username {
+  font-weight: 700;
+  color: var(--darkblue);
+}
+
+.comment-votes_total,
+button {
+  font-weight: 700;
+  color: var(--moderateblue);
+  font-size: 1rem;
+}
+
+.comment-content {
+  line-height: 1.35rem;
+}
+
+
+
+/* COMMENT  */
+
+.comment-container {
+  background-color: var(--white);
+  margin: 1rem;
+  padding: 1rem;
+  color: var(--grayishblue);
+  border-radius: 10px;
+}
+
+.comment-heading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.user-avatar,
+.username,
+.date {
+  margin-right: 1rem;
+}
+
+.user-avatar {
+  width: 2rem;
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.comment-votes {
+  /* border: 1px solid hotpink; */
+  display: flex;
+  border-radius: 10px;
+  background-color: var(--verylightgray);
+  padding: .15rem .5rem;
+}
+
+.plus-btn,
+.minus-btn,
+.comment-votes_total {
+  background-color: var(--verylightgray);
+  display: flex;
+  padding: .5rem;
+  border-radius: inherit;
+  align-self: center;
+} 
+
+.reply-icon,
+.delete-icon,
+.edit-icon {
+  margin-right: .75rem;
+}
+
+
+button {
+  border: none;
+  background-color: var(--white);
+  padding: .5rem 1rem;
+  border-radius: 10px;
+}
+
+.toggled-btns button {
+  margin-right: -.5rem;
+}
+
+.delete-btn {
+  color: var(--softred);
+}
+
+
+
+/* FOOTER */
+
+.attribution { 
+  font-size: 11px; 
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 10px;
+}
+.attribution a { 
+  color: hsl(228, 45%, 44%); 
+}
