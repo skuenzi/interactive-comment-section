@@ -132,6 +132,44 @@ button {
 }
 
 
+/* DELETE MODAL */
+
+.delete-modal {
+  padding: 1.5rem;
+  background-color: var(--white);
+  line-height: 1.35rem;
+  margin: 1rem;
+  border-radius: 15px;
+  color: var(--grayishblue);
+}
+
+.delete-modal_title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.delete-modal_btns {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-modal_btn {
+  color: var(--white);
+  padding: 1rem 1.25rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.delete-modal_btn.yes {
+  background-color: var(--softred);
+}
+.delete-modal_btn.no { 
+  background-color: var(--grayishblue);
+}
+
+
 
 /* FOOTER */
 
