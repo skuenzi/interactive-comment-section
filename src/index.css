@@ -92,8 +92,8 @@ button {
 }
 
 .comment-votes {
-  /* border: 1px solid hotpink; */
   display: flex;
+  font-weight: 500;
   border-radius: 10px;
   background-color: var(--verylightgray);
   padding: .15rem .5rem;
@@ -177,7 +177,6 @@ button {
   font-size: 11px; 
   text-align: center;
   width: 100%;
-  position: fixed;
   bottom: 10px;
 }
 .attribution a { 

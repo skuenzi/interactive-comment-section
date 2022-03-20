@@ -1,11 +1,6 @@
-import Reply from './Reply'
-
-export default function Comment (props) {
-
-    const replies = props.replies ? props.replies.map(reply => <Reply key={reply.id} {...reply}/>) : []
-
+export default function Reply (props) {
     return (
-        <section className="comment-container">
+        <section className="comment-container reply">
             <div className="comment-heading">
                 <img className="user-avatar" src={props.user.image.png} alt="user avatar"/>
                 <p className="username">{props.user.username}</p>
@@ -39,7 +34,6 @@ export default function Comment (props) {
                     </button>
                 </div>
             </div>
-            {replies}
         </section>
     )
 }
