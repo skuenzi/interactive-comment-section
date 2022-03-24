@@ -13,6 +13,8 @@ function App() {
   const [commentsData, setcommentsData] = useState(JSON.parse(localStorage.getItem('commentsdata')) || [])
  
 
+
+
   useEffect(() => {
     localStorage.setItem('commentsdata', JSON.stringify(data.comments))
   }, [commentsData])
@@ -27,7 +29,8 @@ function App() {
 
   return (
     <div className="App">
-      {comments}
+      <ul>{comments}</ul>
+      
       {/* <DeleteModal /> */}
       <NewComment currentUser={currentUser}/>
       <Footer />

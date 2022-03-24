@@ -33,7 +33,7 @@ export default function Comment (props) {
         </button>
     
     return (
-        <section className="comment-container">
+        <li className="comment-container">
             <div className='comment'>
                 <div className="comment-heading">
                     <img className="user-avatar" src={props.user.image.png} alt="user avatar"/>
@@ -64,6 +64,6 @@ export default function Comment (props) {
                 {replies}
             </div>
             
-        </section>
+        </li>
     )
 }
