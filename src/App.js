@@ -20,7 +20,6 @@ function App() {
   const comments = commentsData.map(comment => {
     return <Comment 
       key={comment.id} 
-      isCurrentUser={comment.user.username === currentUser.username}
       currentUser={currentUser} 
       {...comment}
     />

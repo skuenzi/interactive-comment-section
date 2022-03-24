@@ -1,4 +1,9 @@
+import {useState} from 'react'
+
+
 export default function Reply (props) {
+    const [commentScore, setCommentScore] = useState(props.score)
+
 
     const commentOptions = 
         props.user.username === props.currentUser.username ? 
@@ -31,11 +36,15 @@ export default function Reply (props) {
                 <p className="comment-content">{props.content}</p>
                 <div className="comment-footer"> 
                     <div className="comment-votes">
-                        <button className="plus-btn">
+                        <button id="plus-btn" onClick={() => {
+                            setCommentScore(prevScore => prevScore +1)
+                        }}>
                             <img  className="plus-icon"src="/images/icon-plus.svg" alt="plus icon"/>
                         </button>
-                        <p className="comment-votes_total">{props.score}</p>
-                        <button className="minus-btn">
+                        <p className="comment-votes_total">{commentScore}</p>
+                        <button id="minus-btn"onClick={() => {
+                            setCommentScore(prevScore => prevScore -1)
+                        }}>
                             <img  className="minus-icon"src="/images/icon-minus.svg" alt="minus icon"/>
                         </button>
                     </div>

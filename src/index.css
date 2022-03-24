@@ -113,8 +113,8 @@ button {
   padding: .15rem .5rem;
 }
 
-.plus-btn,
-.minus-btn,
+#plus-btn,
+#minus-btn,
 .comment-votes_total {
   background-color: var(--verylightgray);
   display: flex;
@@ -122,6 +122,11 @@ button {
   border-radius: inherit;
   align-self: center;
 } 
+
+#plus-btn:hover,
+#minus-btn:hover {
+  background-color:hsl(238, 40%, 52%);
+}
 
 .reply-icon,
 .delete-icon,
