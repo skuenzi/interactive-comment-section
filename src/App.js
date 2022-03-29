@@ -9,27 +9,27 @@ import data from './data.json'
 
 
 function App() {
-  const [currentUser, setUser] = useState(data.currentUser)
-  const commentsArray = data.comments
+  const allData = data
 
-  // get comments from local storage and save in state
-  const [commentsData, setcommentsData] = useState(JSON.parse(localStorage.getItem('commentsdata')) || [])
-  
-  // set json data to local storage
-  useEffect(() => {
-    localStorage.setItem('commentsdata', JSON.stringify(commentsArray))
-  }, [commentsData])
+  const [commentsData, setCommentsData] = useState(allData.comments)
 
-  // render state into comment components
+  const [currentUser, setCurrentUser] = useState(allData.currentUser)
+
+  const handleScoreChange = (e) => {
+      console.log(e)
+  }
+
+
+
+
   const comments = commentsData.map(comment => {
     return <Comment 
       key={comment.id} 
-      currentUser={currentUser} 
+      handleScoreChange={handleScoreChange}
+      currentUser={currentUser}
       {...comment}
     />
   })
-
-  
 
   return (
     <div className="App">

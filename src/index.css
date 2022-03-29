@@ -114,9 +114,6 @@ ul, li {
 .comment-votes {
   display: flex;
   font-weight: 500;
-  /* border-radius: 10px; */
-  /* background-color: var(--verylightgray); */
-  /* padding: .15rem .5rem; */
 }
 
 .comment-votes_total {

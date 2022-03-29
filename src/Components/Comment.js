@@ -2,7 +2,6 @@ import Reply from './Reply'
 import {useState} from 'react'
 
 export default function Comment (props) {
-    const [commentScore, setCommentScore] = useState(props.score)
 
     const replies = props.replies ? 
         props.replies.map(reply => {
@@ -45,15 +44,11 @@ export default function Comment (props) {
                 <p className="comment-content">{props.content}</p>
                 <div className="comment-footer"> 
                     <div className="comment-votes">
-                        <button id="plus-btn"  onClick={() => {
-                            setCommentScore(prevScore => prevScore + 1)
-                        }}>
+                        <button id="plus-btn" onClick={props.handleScoreChange} >
                             <img  className="plus-icon"src="/images/icon-plus.svg" alt="plus icon"/>
                         </button>
-                        <p className="comment-votes_total">{commentScore}</p>
-                        <button id="minus-btn" onClick={() => {
-                            setCommentScore(prevScore => prevScore -1)
-                        }} >
+                        <p className="comment-votes_total">{props.score}</p>
+                        <button id="minus-btn"  onClick={props.handleScoreChange}>
                             <img  className="minus-icon"src="/images/icon-minus.svg" alt="minus icon"/>
                         </button>
                     </div>
