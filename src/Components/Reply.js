@@ -2,8 +2,22 @@ import {useState} from 'react'
 
 
 export default function Reply (props) {
-    const [commentScore, setCommentScore] = useState(props.score)
+    const [score, setScore] = useState(props.score)
+    const [disable, setDisable] = useState(false)
 
+    const handleScoreChange = (e) => {
+        if (e.target.classList.contains('minus-btn')) {
+            setScore(prevScore => prevScore - 1)
+            setDisable(true)
+            
+
+          }
+          if (e.target.classList.contains('plus-btn')) {
+            setScore(prevScore => prevScore + 1)
+            setDisable(true)
+
+          }
+    }
 
     const commentOptions = 
         props.user.username === props.currentUser.username ? 
@@ -36,17 +50,30 @@ export default function Reply (props) {
                 <p className="comment-content">{props.content}</p>
                 <div className="comment-footer"> 
                     <div className="comment-votes">
-                        <button id="plus-btn" onClick={() => {
-                            setCommentScore(prevScore => prevScore +1)
-                        }}>
-                            <img  className="plus-icon"src="/images/icon-plus.svg" alt="plus icon"/>
+                        <button 
+                            id="plus-btn" 
+                            className={`plus-btn`}
+                            disabled={disable}
+                            onClick={handleScoreChange} 
+                        >
+                           <img  
+                                className={`plus-btn plus-icon`}
+                                src="/images/icon-plus.svg" 
+                                alt="plus icon"
+                            />
                         </button>
-                        <p className="comment-votes_total">{commentScore}</p>
-                        <button id="minus-btn"onClick={() => {
-                            setCommentScore(prevScore => prevScore -1)
-                        }}>
-                            <img  className="minus-icon"src="/images/icon-minus.svg" alt="minus icon"/>
-                        </button>
+                        <p className="comment-votes_total">{score}</p>
+                        <button 
+                            id="minus-btn"  
+                            disabled={disable}
+                            className={`minus-btn`}
+                            onClick={handleScoreChange}
+                        >
+                            <img  
+                                className={`minus-btn minus-icon`}
+                                src="/images/icon-minus.svg" 
+                                alt="minus icon"
+                            />                        </button>
                     </div>
                     {commentOptions}
                 </div>

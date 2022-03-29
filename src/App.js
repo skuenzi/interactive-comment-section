@@ -15,17 +15,12 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(allData.currentUser)
 
-  const handleScoreChange = (e) => {
-      console.log(e)
-  }
-
 
 
 
   const comments = commentsData.map(comment => {
     return <Comment 
       key={comment.id} 
-      handleScoreChange={handleScoreChange}
       currentUser={currentUser}
       {...comment}
     />
