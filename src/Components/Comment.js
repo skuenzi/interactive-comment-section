@@ -1,12 +1,15 @@
 import Reply from './Reply'
+import NewComment from './NewComment'
 import {useState} from 'react'
 
 export default function Comment (props) {
     const [score, setScore] = useState(props.score)
     const [disable, setDisable] = useState(false)
-
-    const replies = props.replies ? 
-        props.replies.map(reply => {
+    const [allReplies, setAllReplies] = useState(props.replies)
+    const [hideNewComment, setHideNewComment] = useState(true)
+    
+    const replies = allReplies ? 
+        allReplies.map(reply => {
             return <Reply 
                 key={reply.id} 
                 currentUser={props.currentUser} 
@@ -20,13 +23,10 @@ export default function Comment (props) {
         if (e.target.classList.contains('minus-btn')) {
             setScore(prevScore => prevScore - 1)
             setDisable(true)
-            
-
           }
           if (e.target.classList.contains('plus-btn')) {
             setScore(prevScore => prevScore + 1)
             setDisable(true)
-
           }
     }
 
@@ -42,7 +42,7 @@ export default function Comment (props) {
                 Edit
             </button>
         </div> :
-        <button className="reply-btn" >
+        <button className="reply-btn" onClick={() => setHideNewComment(prevComment => !prevComment)} >
             <img  className="reply-icon"src="/images/icon-reply.svg" alt="reply icon"/>
             Reply
         </button>
@@ -87,7 +87,13 @@ export default function Comment (props) {
                         </button>
                     </div>
                    {commentOptions}
+                   
                 </div>
+            </div>
+            <div className={hideNewComment ? 'hidden' : 'display'}>
+                <NewComment 
+                    currentUser={props.currentUser} 
+                />
             </div>
             <div className="reply-container">
                 {replies}

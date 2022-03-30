@@ -6,8 +6,17 @@ export default function NewComment (props) {
                 placeholder="Add a comment..."
             />
             <div className="new-comment-footer">
-                <img className="new-comment-avatar" src={`./images/avatars/image-${props.currentUser.username}.png`}/>
-                <button className="submit" type='submit'>send</button>
+                <img 
+                    className="new-comment-avatar" 
+                    src={`./images/avatars/image-${props.currentUser.username}.png`}
+                    alt={props.currentUser.username}
+                />
+                <button 
+                    className="submit" 
+                    type='submit'
+                >
+                    send
+                </button>
             </div>
         </section>
     )

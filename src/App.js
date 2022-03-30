@@ -31,7 +31,9 @@ function App() {
       <ul>{comments}</ul>
       
       {/* <DeleteModal /> */}
-      <NewComment currentUser={currentUser}/>
+      <NewComment 
+        currentUser={currentUser}
+      />
       <Footer />
       
     </div>

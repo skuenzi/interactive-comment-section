@@ -25,7 +25,13 @@ body {
 }
 
 .hidden {
-  display: none;
+  position: absolute;
+  right: -100%;
+
+}
+
+.display {
+  right: 0;
 }
 
 /* TYPOGRAPHY */
