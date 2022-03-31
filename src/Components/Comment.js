@@ -7,6 +7,7 @@ export default function Comment (props) {
     const [disable, setDisable] = useState(false)
     const [allReplies, setAllReplies] = useState(props.replies)
     const [hideNewComment, setHideNewComment] = useState(true)
+    const [newComment, setNewComment] = useState()
     
     const replies = allReplies ? 
         allReplies.map(reply => {
@@ -93,6 +94,8 @@ export default function Comment (props) {
             <div className={hideNewComment ? 'hidden' : 'display'}>
                 <NewComment 
                     currentUser={props.currentUser} 
+                    newComment={newComment}
+                    setNewComment={setNewComment}
                 />
             </div>
             <div className="reply-container">

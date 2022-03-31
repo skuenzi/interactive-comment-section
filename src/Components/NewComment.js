@@ -4,6 +4,7 @@ export default function NewComment (props) {
             <textarea 
                 className="new-comment"
                 placeholder="Add a comment..."
+                value={props.newComment}
             />
             <div className="new-comment-footer">
                 <img 

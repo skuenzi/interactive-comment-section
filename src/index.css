@@ -27,7 +27,6 @@ body {
 .hidden {
   position: absolute;
   right: -100%;
-
 }
 
 .display {
@@ -159,6 +158,10 @@ ul, li {
 .delete-icon,
 .edit-icon {
   margin-right: .75rem;
+}
+
+button:hover {
+  opacity: .7;
 }
 
 
