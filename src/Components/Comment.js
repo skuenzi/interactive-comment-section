@@ -59,7 +59,6 @@ export default function Comment (props) {
                     
                 </div>
                 <p className="comment-content">{props.content}</p>
-                <div className="comment-footer"> 
                     <div className="comment-votes">
                         <button 
                             id="plus-btn" 
@@ -88,8 +87,6 @@ export default function Comment (props) {
                         </button>
                     </div>
                    {commentOptions}
-                   
-                </div>
             </div>
             <div className={hideNewComment ? 'hidden' : 'display'}>
                 <NewComment 

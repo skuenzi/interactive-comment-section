@@ -48,7 +48,6 @@ export default function Reply (props) {
                     
                 </div>
                 <p className="comment-content">{props.content}</p>
-                <div className="comment-footer"> 
                     <div className="comment-votes">
                         <button 
                             id="plus-btn" 
@@ -76,7 +75,6 @@ export default function Reply (props) {
                             />                        </button>
                     </div>
                     {commentOptions}
-                </div>
             </div>
     )
 }

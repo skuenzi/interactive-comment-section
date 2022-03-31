@@ -127,6 +127,7 @@ ul, li {
   padding: 0 .75rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #plus-btn,
@@ -271,4 +272,88 @@ button {
 }
 .attribution a { 
   color: hsl(228, 45%, 44%); 
+}
+
+
+@media screen and (min-width: 800px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .App {
+    max-width: 800px;
+    margin-top: 10%;
+  }
+  .comment,
+  .reply {
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-rows: 25% 75%;
+    grid-template-columns: 10% 50% 1fr;
+    grid-template-areas: 
+    'score heading btns'
+    'score content content';
+  }
+  .comment-votes {
+    grid-area: score;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+  #plus-btn,
+  #minus-btn {
+    border-radius: unset;
+    justify-content: center;
+  }
+  #plus-btn {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  #minus-btn {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .comment-content {
+    grid-area: content;
+    padding-top: .5rem;
+    padding-right: 2rem;
+  }
+  .toggled-btns,
+  .reply-btn {
+    grid-area: btns;
+    align-self: end;
+    justify-self: end;
+  }
+  .comment-heading {
+    grid-area: heading;
+    padding-top: .5rem;
+  }
+  .reply-container {
+    margin-left: 3rem;
+    padding-left: 2rem;
+  }
+  .new-comment-container {
+    display: grid;
+    grid-template-columns: 1fr 70% 2fr;
+    grid-template-areas: 'avatar textarea btn';
+  }
+  .new-comment {
+    grid-area: textarea;
+    width: unset;
+  }
+  .new-comment-avatar {
+    grid-area: avatar;
+    justify-self: center;
+    padding-top: 1rem;
+    height: auto;
+    width: 3rem;
+  }
+  .submit {
+    grid-area: btn;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    height: 40%;
+  }
+  
 }
