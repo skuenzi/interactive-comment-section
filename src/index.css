@@ -55,38 +55,57 @@ button {
 
 /* COMMENT  */
 
-ul, li {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
 
 .comment {
+  display: grid;
+  grid-template-areas: 
+    'heading heading heading'
+    'content content content'
+    'score . buttons';
   margin: 1rem;
   padding: 1rem;
   color: var(--grayishblue);
   border-radius: 10px;
   background-color: var(--white);
+}
+
+.comment-content {
+  grid-area: content;
+}
+
+.comment-votes {
+  grid-area: score;
+}
+
+.comment-footer {
+  grid-area: buttons;
+}
+
+.replies-container {
+  margin-left: 1rem;
+  border-left: solid 6px rgb(103, 114, 126, .1);
 }
 
 .reply {
   color: var(--grayishblue);
   border-radius: 10px;
   background-color: var(--white);
-  margin: 1rem;
-  padding: 1rem;
-}
-
-.reply-container {
+  margin-right: 1rem;
   margin-left: 1rem;
-  border-left: solid 4px rgb(103, 114, 126, .1);
-
 }
+
 
 .comment-heading {
+  grid-area: heading;
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
   margin-bottom: 1rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
 }
 
 .user-avatar,
@@ -111,13 +130,14 @@ ul, li {
 
 .comment-footer {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   margin-top: 1.5rem;
 }
 
 .comment-votes {
   display: flex;
+  margin-top: 1em;
   font-weight: 500;
 }
 
@@ -171,10 +191,6 @@ button {
   background-color: var(--white);
   padding: .5rem 1rem;
   border-radius: 10px;
-}
-
-.toggled-btns button {
-  margin-right: -.5rem;
 }
 
 .delete-btn {
@@ -283,10 +299,9 @@ button {
   }
   .App {
     max-width: 800px;
-    margin-top: 10%;
+    margin-top: 5%;
   }
-  .comment,
-  .reply {
+  .comment{
     padding-top: 1.5rem;
     display: grid;
     grid-template-rows: 25% 75%;
@@ -319,8 +334,7 @@ button {
     padding-top: .5rem;
     padding-right: 2rem;
   }
-  .toggled-btns,
-  .reply-btn {
+  .comment-footer {
     grid-area: btns;
     align-self: end;
     justify-self: end;
@@ -337,6 +351,7 @@ button {
     display: grid;
     grid-template-columns: 1fr 70% 2fr;
     grid-template-areas: 'avatar textarea btn';
+    margin-bottom: 5%;
   }
   .new-comment {
     grid-area: textarea;
