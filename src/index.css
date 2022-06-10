@@ -130,7 +130,6 @@ button {
 
 .comment-footer {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   margin-top: 1.5rem;
 }
@@ -311,6 +310,7 @@ button {
     'score content content';
   }
   .comment-votes {
+    margin-top: unset;
     grid-area: score;
     display: flex;
     flex-direction: column;
