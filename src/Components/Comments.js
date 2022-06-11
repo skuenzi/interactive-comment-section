@@ -9,6 +9,7 @@ import data from "../data.json";
 function Comments({ currentUser }) {
   const allData = data;
   const [backendComments, setBackendComments] = useState(allData.comments);
+  const [activeComment, setActiveComment] = useState(null)
   // console.log(backendComments)
 
   const createComment = async (text) => {
@@ -35,13 +36,12 @@ function Comments({ currentUser }) {
           key={comment.id}
           currentUser={currentUser}
           replies={comment.replies}
+          activeComment={activeComment}
+          setActiveComment={setActiveComment}
           {...comment}
         />
       ))}
-      <NewComment
-        currentUser={currentUser}
-        handleSubmit={addComment}
-      />
+      <NewComment currentUser={currentUser} handleSubmit={addComment} />
     </div>
   );
 }

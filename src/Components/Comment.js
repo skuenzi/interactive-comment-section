@@ -1,51 +1,29 @@
 import { useState } from "react";
+import DeleteModal from "./DeleteModal";
 
 export default function Comment(props) {
   const [score, setScore] = useState(props.score);
-  const [disable, setDisable] = useState(false);
-  const isCurrentUser = props.user.username === props.currentUser.username
+  const [disableUpvote, setDisableUpvote] = useState(false);
+  const [disableDownvote, setDisableDownvote] = useState(false);
+  const starterScore = props.score
+
+  const isCurrentUser = props.user.username === props.currentUser.username;
 
   const handleScoreChange = (e) => {
+    
     if (e.target.classList.contains("minus-btn")) {
       setScore((prevScore) => prevScore - 1);
-      setDisable(true);
+      if ( starterScore - score < 1) {
+          setDisableDownvote(true)
+      }
     }
     if (e.target.classList.contains("plus-btn")) {
       setScore((prevScore) => prevScore + 1);
-      setDisable(true);
+      if ( starterScore - score < 1) {
+        setDisableUpvote(true)
+    }
     }
   };
-
-  const commentOptions =
-    isCurrentUser ? (
-      <div className="toggled-btns">
-        <button className="delete-btn">
-          <img
-            className="delete-icon"
-            src="/images/icon-delete.svg"
-            alt="delete icon"
-          />
-          Delete
-        </button>
-        <button className="edit-btn">
-          <img
-            className="edit-icon"
-            src="/images/icon-edit.svg"
-            alt="edit icon"
-          />
-          Edit
-        </button>
-      </div>
-    ) : (
-      <button className="reply-btn">
-        <img
-          className="reply-icon"
-          src="/images/icon-reply.svg"
-          alt="reply icon"
-        />
-        Reply
-      </button>
-    );
 
   return (
     <div className="comment-container">
@@ -67,7 +45,7 @@ export default function Comment(props) {
           <button
             id="plus-btn"
             className={`plus-btn`}
-            disabled={disable}
+            disabled={disableUpvote}
             onClick={handleScoreChange}
           >
             <img
@@ -79,7 +57,7 @@ export default function Comment(props) {
           <p className="comment-votes_total">{score}</p>
           <button
             id="minus-btn"
-            disabled={disable}
+            disabled={disableDownvote}
             className={`minus-btn`}
             onClick={handleScoreChange}
           >
@@ -90,7 +68,37 @@ export default function Comment(props) {
             />
           </button>
         </div>
-        <div className="comment-footer">{commentOptions}</div>
+        <div className="comment-footer">
+          {isCurrentUser ? (
+            <div className="toggled-btns">
+              <button className="delete-btn">
+                <img
+                  className="delete-icon"
+                  src="/images/icon-delete.svg"
+                  alt="delete icon"
+                />
+                Delete
+              </button>
+              <button className="edit-btn">
+                <img
+                  className="edit-icon"
+                  src="/images/icon-edit.svg"
+                  alt="edit icon"
+                />
+                Edit
+              </button>
+            </div>
+          ) : (
+            <button className="reply-btn">
+              <img
+                className="reply-icon"
+                src="/images/icon-reply.svg"
+                alt="reply icon"
+              />
+              Reply
+            </button>
+          )}
+        </div>
       </div>
       {props.replies && (
         <div className="replies-container">
@@ -99,6 +107,9 @@ export default function Comment(props) {
               <Comment
                 key={reply.id}
                 currentUser={props.currentUser}
+                replies={[]}
+                activeComment={props.activeComment}
+                setActiveComment={props.setActiveComment}
                 {...reply}
               />
             </div>
