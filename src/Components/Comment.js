@@ -4,7 +4,6 @@ export default function Comment(props) {
   const [score, setScore] = useState(props.score);
   const [disable, setDisable] = useState(false);
   const isCurrentUser = props.user.username === props.currentUser.username
-  console.log(isCurrentUser)
 
   const handleScoreChange = (e) => {
     if (e.target.classList.contains("minus-btn")) {
