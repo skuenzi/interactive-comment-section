@@ -10,7 +10,7 @@ function Comments({ currentUser }) {
   const allData = data;
   const [backendComments, setBackendComments] = useState(allData.comments);
   const [activeComment, setActiveComment] = useState(null)
-  // console.log(backendComments)
+  console.log(backendComments)
 
   const createComment = async (text) => {
     return {
@@ -29,6 +29,14 @@ function Comments({ currentUser }) {
     });
   };
 
+  const deleteComment = (commentId) => {
+    const updatedBackendComments = backendComments.filter(
+      (backendComment) => backendComment.id !== commentId
+    );
+    setBackendComments(updatedBackendComments)
+  }
+
+
   return (
     <div>
       {backendComments.map((comment) => (
@@ -38,6 +46,7 @@ function Comments({ currentUser }) {
           replies={comment.replies}
           activeComment={activeComment}
           setActiveComment={setActiveComment}
+          deleteComment={deleteComment}
           {...comment}
         />
       ))}

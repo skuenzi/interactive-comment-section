@@ -5,23 +5,21 @@ export default function Comment(props) {
   const [score, setScore] = useState(props.score);
   const [disableUpvote, setDisableUpvote] = useState(false);
   const [disableDownvote, setDisableDownvote] = useState(false);
-  const starterScore = props.score
-
+  const starterScore = props.score;
   const isCurrentUser = props.user.username === props.currentUser.username;
 
   const handleScoreChange = (e) => {
-    
     if (e.target.classList.contains("minus-btn")) {
       setScore((prevScore) => prevScore - 1);
-      if ( starterScore - score < 1) {
-          setDisableDownvote(true)
+      if (starterScore - score < 1) {
+        setDisableDownvote(true);
       }
     }
     if (e.target.classList.contains("plus-btn")) {
       setScore((prevScore) => prevScore + 1);
-      if ( starterScore - score < 1) {
-        setDisableUpvote(true)
-    }
+      if (starterScore - score < 1) {
+        setDisableUpvote(true);
+      }
     }
   };
 
@@ -71,7 +69,12 @@ export default function Comment(props) {
         <div className="comment-footer">
           {isCurrentUser ? (
             <div className="toggled-btns">
-              <button className="delete-btn">
+              <button
+                className="delete-btn"
+                onClick={() => {
+                  props.deleteComment(props.id)
+                }}
+              >
                 <img
                   className="delete-icon"
                   src="/images/icon-delete.svg"
@@ -110,6 +113,7 @@ export default function Comment(props) {
                 replies={[]}
                 activeComment={props.activeComment}
                 setActiveComment={props.setActiveComment}
+                deleteComment={props.deleteComment}
                 {...reply}
               />
             </div>
