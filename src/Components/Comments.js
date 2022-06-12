@@ -9,8 +9,8 @@ import data from "../data.json";
 function Comments({ currentUser }) {
   const allData = data;
   const [backendComments, setBackendComments] = useState(allData.comments);
-  const [activeComment, setActiveComment] = useState(null)
-  console.log(backendComments)
+  const [activeComment, setActiveComment] = useState(null);
+  // console.log(backendComments);
 
   const createComment = async (text) => {
     return {
@@ -30,12 +30,26 @@ function Comments({ currentUser }) {
   };
 
   const deleteComment = (commentId) => {
-    const updatedBackendComments = backendComments.filter(
-      (backendComment) => backendComment.id !== commentId
-    );
-    setBackendComments(updatedBackendComments)
-  }
-
+    for (let i = 0; i < backendComments.length; i++) {
+      let updatedBackendComments;
+      if (backendComments[i].id === commentId) {
+        updatedBackendComments = backendComments.filter(
+          (backendComment) => backendComment.id !== commentId
+        );
+      } else {
+        const updatedBackendReplies = backendComments[i].replies.filter(
+          (reply) => reply.id !== commentId
+        );
+        const updatedBackendComment = {
+          ...backendComments[i],
+          replies: updatedBackendReplies,
+        };
+        const newComments = backendComments.filter((backendComment) => backendComment.id !== backendComments[i].id)
+        updatedBackendComments = [...newComments, updatedBackendComment]
+      }
+      setBackendComments(updatedBackendComments);
+    }
+  };
 
   return (
     <div>
