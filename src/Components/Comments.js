@@ -29,6 +29,18 @@ function Comments({ currentUser }) {
     });
   };
 
+  const addReply = (text, parentCommentId) => {
+    createComment(text, parentCommentId).then((comment) => {
+      const updatedBackendCommentReplies = backendComments.map((backendComment) => {
+        if (backendComment.id === parentCommentId) {
+          return backendComment.replies.push(comment);
+        }
+      })
+        
+      setActiveComment(null)
+    })
+  }
+
   const deleteComment = (commentId) => {
     for (let i = 0; i < backendComments.length; i++) {
       let updatedBackendComments;
@@ -44,8 +56,10 @@ function Comments({ currentUser }) {
           ...backendComments[i],
           replies: updatedBackendReplies,
         };
-        const newComments = backendComments.filter((backendComment) => backendComment.id !== backendComments[i].id)
-        updatedBackendComments = [...newComments, updatedBackendComment]
+        const newComments = backendComments.filter(
+          (backendComment) => backendComment.id !== backendComments[i].id
+        );
+        updatedBackendComments = [...newComments, updatedBackendComment];
       }
       setBackendComments(updatedBackendComments);
     }
@@ -61,6 +75,8 @@ function Comments({ currentUser }) {
           activeComment={activeComment}
           setActiveComment={setActiveComment}
           deleteComment={deleteComment}
+          addComment={addComment}
+          addReply={addReply}
           {...comment}
         />
       ))}

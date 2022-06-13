@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
+import NewComment from "./NewComment";
 
 export default function Comment(props) {
   const [score, setScore] = useState(props.score);
@@ -7,20 +8,23 @@ export default function Comment(props) {
   const [disableDownvote, setDisableDownvote] = useState(false);
   let starterScore = props.score;
   const isCurrentUser = props.user.username === props.currentUser.username;
+  const isReplying = props.activeComment && props.activeComment.id === props.id;
 
   const handleScoreChange = (e) => {
     if (e.target.classList.contains("minus-btn")) {
       setScore((prevScore) => prevScore - 1);
       if (score - starterScore < 1) {
         setDisableDownvote(true);
-        starterScore = props.score
+        setDisableUpvote(false);
+        starterScore = props.score;
       }
     }
     if (e.target.classList.contains("plus-btn")) {
       setScore((prevScore) => prevScore + 1);
       if (starterScore - score < 1) {
         setDisableUpvote(true);
-        starterScore = props.score
+        setDisableDownvote(false);
+        starterScore = props.score;
       }
     }
   };
@@ -74,7 +78,7 @@ export default function Comment(props) {
               <button
                 className="delete-btn"
                 onClick={() => {
-                  props.deleteComment(props.id)
+                  props.deleteComment(props.id);
                 }}
               >
                 <img
@@ -94,7 +98,10 @@ export default function Comment(props) {
               </button>
             </div>
           ) : (
-            <button className="reply-btn">
+            <button
+              className="reply-btn"
+              onClick={() => props.setActiveComment({ id: props.id })}
+            >
               <img
                 className="reply-icon"
                 src="/images/icon-reply.svg"
@@ -105,6 +112,14 @@ export default function Comment(props) {
           )}
         </div>
       </div>
+      {isReplying && (
+        <div>
+          <NewComment
+            currentUser={props.currentUser}
+            handleSubmit={(text) => props.addReply(text, props.id)}
+          />
+        </div>
+      )}
       {props.replies && (
         <div className="replies-container">
           {props.replies.map((reply) => (
@@ -116,6 +131,8 @@ export default function Comment(props) {
                 activeComment={props.activeComment}
                 setActiveComment={props.setActiveComment}
                 deleteComment={props.deleteComment}
+                addComment={props.addComment}
+                addReply={props.addReply}
                 {...reply}
               />
             </div>
