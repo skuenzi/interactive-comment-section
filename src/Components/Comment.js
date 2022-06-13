@@ -5,20 +5,22 @@ export default function Comment(props) {
   const [score, setScore] = useState(props.score);
   const [disableUpvote, setDisableUpvote] = useState(false);
   const [disableDownvote, setDisableDownvote] = useState(false);
-  const starterScore = props.score;
+  let starterScore = props.score;
   const isCurrentUser = props.user.username === props.currentUser.username;
 
   const handleScoreChange = (e) => {
     if (e.target.classList.contains("minus-btn")) {
       setScore((prevScore) => prevScore - 1);
-      if (starterScore - score < 1) {
+      if (score - starterScore < 1) {
         setDisableDownvote(true);
+        starterScore = props.score
       }
     }
     if (e.target.classList.contains("plus-btn")) {
       setScore((prevScore) => prevScore + 1);
       if (starterScore - score < 1) {
         setDisableUpvote(true);
+        starterScore = props.score
       }
     }
   };
