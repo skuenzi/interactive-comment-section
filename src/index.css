@@ -61,7 +61,7 @@ button {
   grid-template-areas: 
     'heading heading heading'
     'content content content'
-    'score . buttons';
+    'score buttons buttons';
   margin: 1rem;
   padding: 1rem;
   color: var(--grayishblue);
@@ -130,7 +130,7 @@ button {
 
 .comment-footer {
   display: flex;
-  align-items: center;
+  justify-content: end;
   margin-top: 1.5rem;
 }
 
@@ -238,12 +238,20 @@ button {
   background-color: var(--grayishblue);
 }
 
+
+
+
 /* NEW COMMENT  */
 
 .new-comment-container {
   margin: 1rem;
   background-color: var(--white);
   border-radius: 10px;
+  display: grid;
+  grid-template-rows: 70% 25%;
+  grid-template-areas: 
+    'textbox textbox'
+    'avatar send';
 
 }
 
@@ -252,22 +260,20 @@ button {
   border: var(--lightgray) solid 1px;
   border-radius: 10px;
   min-height: 7rem;
-  width: 90%;
+  width: 95%;
   font-family: 'Rubik', sans-serif;
   padding: .75rem;
   resize: none;
-}
-
-.new-comment-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem 1rem;
+  grid-area: textbox;
 }
 
 .new-comment-avatar {
   width: 2rem;
   height: 2rem;
+  grid-area: avatar;
+  justify-self: start;
+  align-self: center;
+  margin-left: 1em;
 }
 
 .submit {
@@ -275,6 +281,10 @@ button {
   color: var(--white);
   padding: 1rem 1.75rem;
   text-transform: uppercase;
+  grid-area: send;
+  justify-self: end;
+  max-width: 50%;
+  margin-right: 1em;
 }
 
 
@@ -369,7 +379,8 @@ button {
     grid-area: btn;
     margin-top: 1rem;
     margin-right: 1rem;
-    height: 40%;
+    height: 50%;
+    max-width: unset;
   }
   
 }
