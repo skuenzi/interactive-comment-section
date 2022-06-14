@@ -86,20 +86,11 @@ button {
   border-left: solid 6px rgb(103, 114, 126, .1);
 }
 
-.reply {
-  color: var(--grayishblue);
-  border-radius: 10px;
-  background-color: var(--white);
-  margin-right: 1rem;
-  margin-left: 1rem;
-}
-
 
 .comment-heading {
   grid-area: heading;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   margin-bottom: 1rem;
 }
 
@@ -131,13 +122,22 @@ button {
 .comment-footer {
   display: flex;
   justify-content: end;
-  margin-top: 1.5rem;
+  margin-top: 1em;
 }
 
 .comment-votes {
   display: flex;
   margin-top: 1em;
   font-weight: 500;
+}
+
+.toggled-btns {
+  display: flex;
+  font-size: .75rem;
+}
+
+.delete-btn, .edit-btn {
+  display: flex;
 }
 
 .comment-votes_total {
