@@ -209,17 +209,21 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: hsl(240, 2%, 89%, .3);
-  display: absolute;
+  background-color: hsl(240, 2%, 89%, .7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .delete-modal {
   padding: 1.5rem;
+  width: 95%;
+  height: 220px;
+  top: 40%;
   background-color: var(--white);
   line-height: 1.35rem;
   margin: 1rem;
   border-radius: 15px;
-  margin: 0 auto;
   color: var(--grayishblue);
 }
 
@@ -392,6 +396,9 @@ button {
     margin-right: 1rem;
     height: 50%;
     max-width: unset;
+  }
+  .delete-modal {
+    max-width: 375px;
   }
   
 }
