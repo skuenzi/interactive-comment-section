@@ -72,6 +72,11 @@ button {
 .comment-content {
   grid-area: content;
 }
+.editing {
+  grid-area: content;
+  margin: 0;
+  padding: 0;
+}
 
 .comment-votes {
   grid-area: score;
@@ -267,8 +272,19 @@ button {
   grid-template-areas: 
     'textbox textbox'
     'avatar send';
-
+  margin: 1em;
 }
+
+.edit-comment {
+  display: grid;
+  grid-template-rows: 70% 25%;
+  grid-template-areas: 
+  'textbox textbox'
+  'send send';
+  
+}
+
+
 
 .new-comment {
   margin: .75rem;
@@ -280,6 +296,7 @@ button {
   padding: .75rem;
   resize: none;
   grid-area: textbox;
+  color: var(--grayishblue)
 }
 
 .new-comment-avatar {
@@ -355,6 +372,9 @@ button {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
+  .editing {
+    grid-area: content;
+  }
   .comment-content {
     grid-area: content;
     padding-top: .5rem;
@@ -378,6 +398,12 @@ button {
     grid-template-columns: 1fr 70% 2fr;
     grid-template-areas: 'avatar textarea btn';
     margin-bottom: 5%;
+  }
+  .edit-comment {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas: 
+      'textarea btn';
   }
   .new-comment {
     grid-area: textarea;

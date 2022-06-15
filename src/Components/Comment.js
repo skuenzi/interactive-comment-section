@@ -11,7 +11,14 @@ export default function Comment(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   let starterScore = props.score;
   const isCurrentUser = props.user.username === props.currentUser.username;
-  const isReplying = props.activeComment && props.activeComment.id === props.id;
+  const isReplying =
+    props.activeComment &&
+    props.activeComment.id === props.id &&
+    props.activeComment.type === "replying";
+  const isEditing =
+    props.activeComment &&
+    props.activeComment.id === props.id &&
+    props.activeComment.type === "editing";
 
   const handleScoreChange = (e) => {
     if (e.target.classList.contains("minus-btn")) {
@@ -38,7 +45,7 @@ export default function Comment(props) {
       createdAt: "Just now",
       id: nanoid(),
       replyingTo: props.user.username,
-      score: 0,
+      score: 1,
       user: props.currentUser,
     };
   };
@@ -59,6 +66,17 @@ export default function Comment(props) {
     }
   };
 
+  const updateReply = (text, replyId) => {
+    const updatedBackendReplies= backendReplies.map((backendReply) => {
+      if (backendReply.id === replyId) {
+        return {...backendReply, content: text}
+      }
+      return backendReply
+    })
+    setBackendReplies(updatedBackendReplies)
+    props.setActiveComment(null)
+  }
+
   return (
     <div className="comment-container">
       <div className="comment">
@@ -74,7 +92,20 @@ export default function Comment(props) {
           )}
           <p className="date">{props.createdAt}</p>
         </div>
-        <p className="comment-content">{props.content}</p>
+        <div className="editing">
+          {!isEditing && <p className="comment-content">{props.content}</p>}
+          {isEditing && (
+            <NewComment
+              currentUser={props.currentUser}
+              handleSubmit={(text) => {
+                props.updateComment(text, props.id);
+              }}
+              initialText={props.content}
+              isEdit
+              buttonText='update'
+            />
+          )}
+        </div>
         <div className="comment-votes">
           <button
             id="plus-btn"
@@ -105,8 +136,11 @@ export default function Comment(props) {
         <div className="comment-footer">
           {isCurrentUser ? (
             <div className="toggled-btns">
-              <button className="delete-btn"
-                onClick={() => {setShowDeleteModal(true)}}
+              <button
+                className="delete-btn"
+                onClick={() => {
+                  setShowDeleteModal(true);
+                }}
               >
                 <img
                   className="delete-icon"
@@ -115,7 +149,12 @@ export default function Comment(props) {
                 />
                 Delete
               </button>
-              <button className="edit-btn">
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  props.setActiveComment({ id: props.id, type: "editing" });
+                }}
+              >
                 <img
                   className="edit-icon"
                   src="/images/icon-edit.svg"
@@ -127,7 +166,9 @@ export default function Comment(props) {
           ) : (
             <button
               className="reply-btn"
-              onClick={() => props.setActiveComment({ id: props.id })}
+              onClick={() =>
+                props.setActiveComment({ id: props.id, type: "replying" })
+              }
             >
               <img
                 className="reply-icon"
@@ -145,8 +186,9 @@ export default function Comment(props) {
             currentUser={props.currentUser}
             placeholder={`Replying to @${props.user.username}`}
             handleSubmit={(text) =>
-              addReply(`@${props.user.username} ${text},`)
+              addReply(`@${props.user.username}, ${text}`)
             }
+            buttonText='reply'
           />
         </div>
       )}
@@ -161,6 +203,7 @@ export default function Comment(props) {
                 setActiveComment={props.setActiveComment}
                 addReply={addReply}
                 deleteReply={deleteReply}
+                updateReply={updateReply}
                 {...reply}
               />
             </div>

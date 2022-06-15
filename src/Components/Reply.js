@@ -8,7 +8,14 @@ export default function Reply(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   let starterScore = props.score;
   const isCurrentUser = props.user.username === props.currentUser.username;
-  const isReplying = props.activeComment && props.activeComment.id === props.id;
+  const isReplying =
+    props.activeComment &&
+    props.activeComment.id === props.id &&
+    props.activeComment.type === "replying";
+  const isEditing =
+    props.activeComment &&
+    props.activeComment.id === props.id &&
+    props.activeComment.type === "editing";
 
   const handleScoreChange = (e) => {
     if (e.target.classList.contains("minus-btn")) {
@@ -44,7 +51,21 @@ export default function Reply(props) {
           )}
           <p className="date">{props.createdAt}</p>
         </div>
-        <p className="comment-content">{props.content}</p>
+        <div className="editing">
+
+          {!isEditing && <p className="comment-content">{props.content}</p>}
+          {isEditing && (
+            <NewComment
+              currentUser={props.currentUser}
+              handleSubmit={(text) => {
+                props.updateReply(text, props.id);
+              }}
+              initialText={props.content}
+              isEdit
+              buttonText='update'
+            />
+          )}
+        </div>
         <div className="comment-votes">
           <button
             id="plus-btn"
@@ -88,7 +109,12 @@ export default function Reply(props) {
                 />
                 Delete
               </button>
-              <button className="edit-btn">
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  props.setActiveComment({ id: props.id, type: "editing" });
+                }}
+              >
                 <img
                   className="edit-icon"
                   src="/images/icon-edit.svg"
@@ -100,7 +126,9 @@ export default function Reply(props) {
           ) : (
             <button
               className="reply-btn"
-              onClick={() => props.setActiveComment({ id: props.id })}
+              onClick={() =>
+                props.setActiveComment({ id: props.id, type: "replying" })
+              }
             >
               <img
                 className="reply-icon"
@@ -119,39 +147,40 @@ export default function Reply(props) {
             currentUser={props.currentUser}
             placeholder={`Replying to @${props.user.username}`}
             handleSubmit={(text) =>
-              props.addReply(`@${props.user.username} ${text},`)
+              props.addReply(`@${props.user.username}, ${text}`)
             }
+            buttonText='reply'
           />
         </div>
       )}
 
       {showDeleteModal && (
         <div className="delete-modal-container">
-            <div className="delete-modal">
+          <div className="delete-modal">
             <h2 className="delete-modal_title">Delete comment</h2>
             <p className="delete-modal_content">
-                Are you sure you want to delete this comment? This will remove the
-                comment and can't be undone.
+              Are you sure you want to delete this comment? This will remove the
+              comment and can't be undone.
             </p>
             <div className="delete-modal_btns">
-                <button
+              <button
                 className="delete-modal_btn no"
                 onClick={() => {
-                    setShowDeleteModal(false);
+                  setShowDeleteModal(false);
                 }}
-                >
+              >
                 No, cancel
-                </button>
-                <button
+              </button>
+              <button
                 className="delete-modal_btn yes"
                 onClick={() => {
-                    props.deleteReply(props.id);
+                  props.deleteReply(props.id);
                 }}
-                >
+              >
                 Yes, delete
-                </button>
+              </button>
             </div>
-            </div>
+          </div>
         </div>
       )}
     </div>

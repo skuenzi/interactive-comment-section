@@ -4,9 +4,11 @@ export default function NewComment({
   currentUser,
   handleSubmit,
   placeholder = "Add comment...",
+  initialText = "",
+  isEdit = false,
+  buttonText
 }) {
-  const [text, setText] = useState();
-
+  const [text, setText] = useState(initialText);
   const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit(text);
@@ -14,7 +16,10 @@ export default function NewComment({
   };
 
   return (
-    <form className="new-comment-container" onSubmit={onSubmit}>
+    <form
+      className={isEdit ? "edit-comment" : "new-comment-container"}
+      onSubmit={onSubmit}
+    >
       <textarea
         className="new-comment"
         placeholder={placeholder}
@@ -23,13 +28,15 @@ export default function NewComment({
           setText(e.target.value);
         }}
       />
-      <img
-        className="new-comment-avatar"
-        src={`./images/avatars/image-${currentUser.username}.png`}
-        alt={currentUser.username}
-      />
+      {!isEdit && (
+        <img
+          className="new-comment-avatar"
+          src={`./images/avatars/image-${currentUser.username}.png`}
+          alt={currentUser.username}
+        />
+      )}
       <button className="submit" type="submit">
-        Send
+        {buttonText}
       </button>
     </form>
   );

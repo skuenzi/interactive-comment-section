@@ -17,7 +17,7 @@ function Comments({ currentUser }) {
       createdAt: "Just now",
       id: nanoid(),
       replies: [],
-      score: 0,
+      score: 1,
       user: currentUser,
     };
   };
@@ -40,6 +40,17 @@ function Comments({ currentUser }) {
     }
   };
 
+  const updateComment = (text, commentId) => {
+    const updatedBackendComments = backendComments.map((backendComment) => {
+      if (backendComment.id === commentId) {
+        return {...backendComment, content: text}
+      }
+      return backendComment 
+    })
+    setBackendComments(updatedBackendComments)
+    setActiveComment(null)
+  }
+
   return (
     <div>
       {backendComments.map((comment) => (
@@ -51,10 +62,11 @@ function Comments({ currentUser }) {
           setActiveComment={setActiveComment}
           deleteComment={deleteComment}
           addComment={addComment}
+          updateComment={updateComment}
           {...comment}
         />
       ))}
-      <NewComment currentUser={currentUser} handleSubmit={addComment} />
+      <NewComment currentUser={currentUser} handleSubmit={addComment} initialText='' buttonText='send'/>
     </div>
   );
 }
