@@ -1,13 +1,10 @@
-import { nanoid } from "nanoid";
 import { useState } from "react";
 import NewComment from "./NewComment";
-import Reply from "./Reply";
 
-export default function Comment(props) {
+export default function Reply(props) {
   const [score, setScore] = useState(props.score);
   const [disableUpvote, setDisableUpvote] = useState(false);
   const [disableDownvote, setDisableDownvote] = useState(false);
-  const [backendReplies, setBackendReplies] = useState(props.replies);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   let starterScore = props.score;
   const isCurrentUser = props.user.username === props.currentUser.username;
@@ -32,35 +29,8 @@ export default function Comment(props) {
     }
   };
 
-  const createReply = async (text) => {
-    return {
-      content: text,
-      createdAt: "Just now",
-      id: nanoid(),
-      replyingTo: props.user.username,
-      score: 0,
-      user: props.currentUser,
-    };
-  };
-
-  const addReply = (text) => {
-    createReply(text).then((reply) => {
-      setBackendReplies([reply, ...backendReplies]);
-    });
-    props.setActiveComment(null);
-  };
-
-  const deleteReply = (replyId) => {
-    for (let i = 0; i < backendReplies.length; i++) {
-      const updatedBackendReplies = backendReplies.filter(
-        (backendReply) => backendReply.id !== replyId
-      );
-      setBackendReplies(updatedBackendReplies);
-    }
-  };
-
   return (
-    <div className="comment-container">
+    <div>
       <div className="comment">
         <div className="comment-heading">
           <img
@@ -105,8 +75,11 @@ export default function Comment(props) {
         <div className="comment-footer">
           {isCurrentUser ? (
             <div className="toggled-btns">
-              <button className="delete-btn"
-                onClick={() => {setShowDeleteModal(true)}}
+              <button
+                className="delete-btn"
+                onClick={() => {
+                  setShowDeleteModal(true);
+                }}
               >
                 <img
                   className="delete-icon"
@@ -139,61 +112,46 @@ export default function Comment(props) {
           )}
         </div>
       </div>
+
       {isReplying && (
         <div>
           <NewComment
             currentUser={props.currentUser}
             placeholder={`Replying to @${props.user.username}`}
             handleSubmit={(text) =>
-              addReply(`@${props.user.username} ${text},`)
+              props.addReply(`@${props.user.username} ${text},`)
             }
           />
         </div>
       )}
-      {props.replies && (
-        <div className="replies-container">
-          {backendReplies.map((reply) => (
-            <div className="reply">
-              <Reply
-                key={reply.id}
-                currentUser={props.currentUser}
-                activeComment={props.activeComment}
-                setActiveComment={props.setActiveComment}
-                addReply={addReply}
-                deleteReply={deleteReply}
-                {...reply}
-              />
-            </div>
-          ))}
-        </div>
-      )}
+
       {showDeleteModal && (
         <div className="delete-modal-container">
-          <div className="delete-modal">
+            <div className="delete-modal">
             <h2 className="delete-modal_title">Delete comment</h2>
             <p className="delete-modal_content">
-              Are you sure you want to delete this comment? This will remove the
-              comment and can't be undone.
+                Are you sure you want to delete this comment? This will remove the
+                comment and can't be undone.
             </p>
             <div className="delete-modal_btns">
-              <button
+                <button
                 className="delete-modal_btn no"
                 onClick={() => {
-                  setShowDeleteModal(false);
+                    setShowDeleteModal(false);
                 }}
-              >
+                >
                 No, cancel
-              </button>
-              <button
+                </button>
+                <button
                 className="delete-modal_btn yes"
                 onClick={() => {
-                  props.deleteComment(props.id);
+                    props.deleteReply(props.id);
                 }}
-              >
+                >
                 Yes, delete
-              </button>
+                </button>
             </div>
-          </div>
+            </div>
         </div>
       )}
     </div>

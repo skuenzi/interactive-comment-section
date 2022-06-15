@@ -1,7 +1,6 @@
 import Comment from "./Comment";
 import NewComment from "./NewComment";
-import DeleteModal from "./DeleteModal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 
 import data from "../data.json";
@@ -29,18 +28,6 @@ function Comments({ currentUser }) {
     });
   };
 
-  const addReply = (text, parentCommentId) => {
-    createComment(text, parentCommentId).then((comment) => {
-      const updatedBackendCommentReplies = backendComments.map((backendComment) => {
-        if (backendComment.id === parentCommentId) {
-          return backendComment.replies.push(comment);
-        }
-      })
-        
-      setActiveComment(null)
-    })
-  }
-
   const deleteComment = (commentId) => {
     for (let i = 0; i < backendComments.length; i++) {
       let updatedBackendComments;
@@ -48,18 +35,6 @@ function Comments({ currentUser }) {
         updatedBackendComments = backendComments.filter(
           (backendComment) => backendComment.id !== commentId
         );
-      } else {
-        const updatedBackendReplies = backendComments[i].replies.filter(
-          (reply) => reply.id !== commentId
-        );
-        const updatedBackendComment = {
-          ...backendComments[i],
-          replies: updatedBackendReplies,
-        };
-        const newComments = backendComments.filter(
-          (backendComment) => backendComment.id !== backendComments[i].id
-        );
-        updatedBackendComments = [...newComments, updatedBackendComment];
       }
       setBackendComments(updatedBackendComments);
     }
@@ -76,7 +51,6 @@ function Comments({ currentUser }) {
           setActiveComment={setActiveComment}
           deleteComment={deleteComment}
           addComment={addComment}
-          addReply={addReply}
           {...comment}
         />
       ))}

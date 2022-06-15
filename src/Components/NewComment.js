@@ -1,22 +1,26 @@
 import { useState } from "react";
 
-export default function NewComment({ currentUser, handleSubmit }) {
+export default function NewComment({
+  currentUser,
+  handleSubmit,
+  placeholder = "Add comment...",
+}) {
   const [text, setText] = useState();
 
   const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit(text);
-    setText('')
+    setText("");
   };
 
   return (
     <form className="new-comment-container" onSubmit={onSubmit}>
       <textarea
         className="new-comment"
-        placeholder="Add a comment..."
+        placeholder={placeholder}
         value={text}
-        onChange={e => {
-            setText(e.target.value)
+        onChange={(e) => {
+          setText(e.target.value);
         }}
       />
       <img

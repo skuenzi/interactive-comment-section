@@ -1,6 +1,6 @@
 export default function DeleteModal() {
   return (
-    <section className="delete-modal">
+    <div className="delete-modal">
       <h2 className="delete-modal_title">Delete comment</h2>
       <p className="delete-modal_content">
         Are you sure you want to delete this comment? This will remove the
@@ -10,6 +10,6 @@ export default function DeleteModal() {
         <button className="delete-modal_btn no">No, cancel</button>
         <button className="delete-modal_btn yes">Yes, delete</button>
       </div>
-    </section>
+    </div>
   );
 }

@@ -202,6 +202,16 @@ button {
 
 /* DELETE MODAL */
 
+.delete-modal-container {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: hsl(240, 2%, 89%, .3);
+  display: absolute;
+}
 
 .delete-modal {
   padding: 1.5rem;
@@ -209,6 +219,7 @@ button {
   line-height: 1.35rem;
   margin: 1rem;
   border-radius: 15px;
+  margin: 0 auto;
   color: var(--grayishblue);
 }
 
