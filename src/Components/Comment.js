@@ -115,7 +115,7 @@ export default function Comment(props) {
           >
             <img
               className={`plus-btn plus-icon`}
-              src={require("/images/icon-plus.svg")}
+              src="./images/icon-plus.svg"
               alt="plus icon"
             />
           </button>
@@ -128,7 +128,7 @@ export default function Comment(props) {
           >
             <img
               className={`minus-btn minus-icon`}
-              src="/images/icon-minus.svg"
+              src="./images/icon-minus.svg"
               alt="minus icon"
             />
           </button>
@@ -144,7 +144,7 @@ export default function Comment(props) {
               >
                 <img
                   className="delete-icon"
-                  src="/images/icon-delete.svg"
+                  src="./images/icon-delete.svg"
                   alt="delete icon"
                 />
                 Delete
@@ -157,7 +157,7 @@ export default function Comment(props) {
               >
                 <img
                   className="edit-icon"
-                  src="/images/icon-edit.svg"
+                  src="./images/icon-edit.svg"
                   alt="edit icon"
                 />
                 Edit
@@ -172,7 +172,7 @@ export default function Comment(props) {
             >
               <img
                 className="reply-icon"
-                src="/images/icon-reply.svg"
+                src="./images/icon-reply.svg"
                 alt="reply icon"
               />
               Reply
