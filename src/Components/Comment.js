@@ -115,7 +115,7 @@ export default function Comment(props) {
           >
             <img
               className={`plus-btn plus-icon`}
-              src="/images/icon-plus.svg"
+              src={require("/images/icon-plus.svg")}
               alt="plus icon"
             />
           </button>
