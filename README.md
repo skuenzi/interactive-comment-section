@@ -51,33 +51,36 @@ Users should be able to:
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I found this project really challenging because of the nested structure and my desire to keep the code DRY. I didn't like the idea of having separate components for the comments and replies when they were so similar. One of the first versions actually just used the mapped over the Comments component within itself to render the replies. But when it came to iterating through the comments and the replies for the actions, it actually become simpler to create a Reply component. 
 
-To see how you can add code snippets, see below:
+I'm particularly proud of the code that limits the votes. I knew I wanted to prevent the user from changing the score by more than one point, but it was a bit of a challenge to disable the buttons after clicking while also making sure that it could be undone. 
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+  const handleScoreChange = (e) => {
+    if (e.target.classList.contains("minus-btn")) {
+      setScore((prevScore) => prevScore - 1);
+      if (score - starterScore < 1) {
+        setDisableDownvote(true);
+        setDisableUpvote(false);
+        starterScore = props.score;
+      }
+    }
+    if (e.target.classList.contains("plus-btn")) {
+      setScore((prevScore) => prevScore + 1);
+      if (starterScore - score < 1) {
+        setDisableUpvote(true);
+        setDisableDownvote(false);
+        starterScore = props.score;
+      }
+    }
+  };
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+There are several places that this code could be improved. I actually originally started learning Redux for this project, thinking that a state management library could make things easier. But in the end, it was simplest to just use React. I could see it being useful to go back and implement Redux to make the code a bit more efficient. I would also like to complete the bonus challenge of saving the data to localStorage. 
 
 ### Useful resources
 
