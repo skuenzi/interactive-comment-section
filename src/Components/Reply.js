@@ -1,5 +1,11 @@
 import { useState } from "react";
 import NewComment from "./NewComment";
+import deleteIcon from '../images/icon-delete.svg'
+import editIcon from '../images/icon-edit.svg'
+import minusIcon from '../images/icon-minus.svg'
+import plusIcon from '../images/icon-plus.svg'
+import replyIcon from '../images/icon-reply.svg'
+
 
 export default function Reply(props) {
   const [score, setScore] = useState(props.score);
@@ -75,7 +81,7 @@ export default function Reply(props) {
           >
             <img
               className={`plus-btn plus-icon`}
-              src="./images/icon-plus.svg"
+              src={plusIcon}
               alt="plus icon"
             />
           </button>
@@ -88,7 +94,7 @@ export default function Reply(props) {
           >
             <img
               className={`minus-btn minus-icon`}
-              src="./images/icon-minus.svg"
+              src={minusIcon}
               alt="minus icon"
             />
           </button>
@@ -104,7 +110,7 @@ export default function Reply(props) {
               >
                 <img
                   className="delete-icon"
-                  src="./images/icon-delete.svg"
+                  src={deleteIcon}
                   alt="delete icon"
                 />
                 Delete
@@ -117,7 +123,7 @@ export default function Reply(props) {
               >
                 <img
                   className="edit-icon"
-                  src="./images/icon-edit.svg"
+                  src={editIcon}
                   alt="edit icon"
                 />
                 Edit
@@ -132,7 +138,7 @@ export default function Reply(props) {
             >
               <img
                 className="reply-icon"
-                src="./images/icon-reply.svg"
+                src={replyIcon}
                 alt="reply icon"
               />
               Reply

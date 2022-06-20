@@ -158,7 +158,6 @@ button {
 .minus-btn {
   background-color: var(--verylightgray);
   display: flex;
-  height: 2.5rem;
   align-items: center;
   padding: 0 .5rem;
   border-radius: 0;
@@ -363,6 +362,7 @@ button {
   .minus-btn {
     border-radius: unset;
     justify-content: center;
+    padding: .5rem 1rem;
   }
   .plus-btn {
     border-top-left-radius: 10px;
