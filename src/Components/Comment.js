@@ -127,7 +127,6 @@ export default function Comment(props) {
           </button>
           <p className="comment-votes_total">{score}</p>
           <button
-            id="minus-btn"
             disabled={disableDownvote}
             className='minus-btn'
             onClick={handleScoreChange}
