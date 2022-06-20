@@ -1,6 +1,5 @@
 import Footer from "./Components/Footer";
 import Comments from "./Components/Comments";
-import DeleteModal from "./Components/DeleteModal";
 import data from "./data.json";
 
 function App() {
@@ -9,8 +8,6 @@ function App() {
   return (
     <div className="App">
       <Comments currentUser={currentUser} />
-
-      {/* <DeleteModal /> */}
       <Footer />
     </div>
   );

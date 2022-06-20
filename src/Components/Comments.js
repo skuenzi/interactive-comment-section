@@ -52,7 +52,7 @@ function Comments({ currentUser }) {
   }
 
   return (
-    <div>
+    <main>
       {backendComments.map((comment) => (
         <Comment
           key={comment.id}
@@ -67,7 +67,7 @@ function Comments({ currentUser }) {
         />
       ))}
       <NewComment currentUser={currentUser} handleSubmit={addComment} initialText='' buttonText='send'/>
-    </div>
+    </main>
   );
 }
 

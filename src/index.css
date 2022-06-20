@@ -154,8 +154,8 @@ button {
   justify-content: center;
 }
 
-#plus-btn,
-#minus-btn {
+.plus-btn,
+.minus-btn {
   background-color: var(--verylightgray);
   display: flex;
   height: 2.5rem;
@@ -164,18 +164,18 @@ button {
   border-radius: 0;
 } 
 
-#plus-btn {
+.plus-btn {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
-#minus-btn {
+.minus-btn {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-#plus-btn:hover,
-#minus-btn:hover {
+.plus-btn:hover,
+.minus-btn:hover {
   background-color:hsl(238, 40%, 52%);
 }
 
@@ -359,16 +359,16 @@ button {
     flex-direction: column;
     width: 60%;
   }
-  #plus-btn,
-  #minus-btn {
+  .plus-btn,
+  .minus-btn {
     border-radius: unset;
     justify-content: center;
   }
-  #plus-btn {
+  .plus-btn {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  #minus-btn {
+  .minus-btn {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }

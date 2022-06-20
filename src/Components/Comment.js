@@ -108,8 +108,7 @@ export default function Comment(props) {
         </div>
         <div className="comment-votes">
           <button
-            id="plus-btn"
-            className={`plus-btn`}
+            className='plus-btn'
             disabled={disableUpvote}
             onClick={handleScoreChange}
           >
@@ -123,7 +122,7 @@ export default function Comment(props) {
           <button
             id="minus-btn"
             disabled={disableDownvote}
-            className={`minus-btn`}
+            className='minus-btn'
             onClick={handleScoreChange}
           >
             <img
