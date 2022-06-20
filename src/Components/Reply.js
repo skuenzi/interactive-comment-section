@@ -74,7 +74,6 @@ export default function Reply(props) {
         </div>
         <div className="comment-votes">
           <button
-            id="plus-btn"
             className={`plus-btn`}
             disabled={disableUpvote}
             onClick={handleScoreChange}
